@@ -27,7 +27,7 @@ public class ServicePartite {
 	 * @throws IOException
 	 */
 
-	@Scheduled(cron = "0 0 * * *")
+	@Scheduled(cron = "0 0 * * * ?")
 	public void takePartite() throws IOException {
 		String urlAPI = "https://www.scorebat.com/video-api/v3/";
 		ObjectMapper mapper = new ObjectMapper();
