@@ -81,6 +81,18 @@ public class ServicePartite {
 		return partite;
 	}
 	
+	public List<Partite> trovaData(String data){
+		List <Partite> partite = new ArrayList<Partite>();
+		data = data.toLowerCase();
+		for(int i = 0; i < partiteRepository.findAll().size(); i++) {
+			if(partiteRepository.findAll().get(i).getDate().toLowerCase().contains(data)) 
+				partite.add(partiteRepository.findAll().get(i));
+		}
+		return partite;
+	}
+	
+	
+	
 	
 	
 	

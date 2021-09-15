@@ -38,5 +38,10 @@ public class PartiteController {
 	public List<Partite> metodoCompetizione(@PathVariable String competizione){
 		return service.trovaCampionato(competizione);
 	}
+	
+	@GetMapping("/date/{date}")
+	public List<Partite> metodoDate(@PathVariable String date){
+		return service.trovaData(date);
+	}
 
 }
