@@ -38,7 +38,7 @@ public class ServicePartite {
 	    	JsonNode actualObj = mapper.readTree(response.body().string());
 	    	for(int i = 0; i < actualObj.get("response").size(); i++) {
 	    		Partite partita = new ObjectMapper().readValue(actualObj.get("response").get(i).toString(), Partite.class);
-	    		partita.setDate(actualObj.get("response").get(0).get("date").asText());
+	    		partita.setDate(actualObj.get("response").get(i).get("date").asText());
 	    		for(int j = 0;j<actualObj.get("response").get(i).get("videos").size();j++) {
 	    			String title = actualObj.get("response").get(i).get("videos").get(j).get("title").asText();
 	    			String embed = actualObj.get("response").get(i).get("videos").get(j).get("embed").asText();
