@@ -14,7 +14,7 @@ public class Videos {
 
 	public Videos(String title, String embed) {
 		setTitle(title);
-		setEmbed(title);
+		setEmbed(embed);
 	}
 
 

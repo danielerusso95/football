@@ -36,14 +36,12 @@ public class ServicePartite {
 	    
 	    try (Response response = client.newCall(request).execute()){
 	    	JsonNode actualObj = mapper.readTree(response.body().string());
-	    	System.out.println(actualObj.get("response").get(0).get("title"));
-	    	System.out.println(actualObj.get("response").get(0).get("videos").get(0).toString());
 	    	for(int i = 0; i < actualObj.get("response").size(); i++) {
 	    		Partite partita = new ObjectMapper().readValue(actualObj.get("response").get(i).toString(), Partite.class);
-	    		partita.setDate(actualObj.get("response").get(0).get("date").toString());
+	    		partita.setDate(actualObj.get("response").get(0).get("date").asText());
 	    		for(int j = 0;j<actualObj.get("response").get(i).get("videos").size();j++) {
-	    			String title = actualObj.get("response").get(i).get("videos").get(j).get("title").toString();
-	    			String embed = actualObj.get("response").get(i).get("videos").get(j).get("embed").toString();
+	    			String title = actualObj.get("response").get(i).get("videos").get(j).get("title").asText();
+	    			String embed = actualObj.get("response").get(i).get("videos").get(j).get("embed").asText();
 	    			Videos video = new Videos(title,embed);
 	    			partita.getVideo().add(video);
 	    		}
