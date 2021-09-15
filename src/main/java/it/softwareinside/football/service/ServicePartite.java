@@ -55,5 +55,50 @@ public class ServicePartite {
 	    return null;
 	}
 	
+	
+	
+	
+	
+	public List<Partite> trovaPartite(String titlePartita) {
+		List <Partite> partite = new ArrayList<Partite>();
+		titlePartita = titlePartita.toLowerCase();
+		for(int i = 0; i < partiteRepository.findAll().size(); i++) {
+			if(partiteRepository.findAll().get(i).getTitle().toLowerCase().contains(titlePartita)) 
+				partite.add(partiteRepository.findAll().get(i));
+		}
+		return partite;
+			
+	}
+	
+	
+	public List<Partite> trovaCampionato(String competition){
+		List <Partite> partite = new ArrayList<Partite>();
+		competition = competition.toLowerCase();
+		for(int i = 0; i < partiteRepository.findAll().size(); i++) {
+			if(partiteRepository.findAll().get(i).getCompetition().toLowerCase().contains(competition)) 
+				partite.add(partiteRepository.findAll().get(i));
+		}
+		return partite;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

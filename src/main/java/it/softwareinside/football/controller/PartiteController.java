@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,20 @@ public class PartiteController {
 	
 	
 	@GetMapping("/all")
-	public List<Partite> metodo() throws IOException {
+	public List<Partite> metodoFill() throws IOException {
 		return service.takePartite();
+	}
+	
+	
+	@GetMapping("/partita/{partita}")
+	public List<Partite> metodoPartite(@PathVariable String partita){
+		return service.trovaPartite(partita);
+	}
+	
+	
+	@GetMapping("/competizione/{competizione}")
+	public List<Partite> metodoCompetizione(@PathVariable String competizione){
+		return service.trovaCampionato(competizione);
 	}
 
 }
