@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 import it.softwareinside.football.model.Partite;
+import it.softwareinside.football.model.Videos;
 import it.softwareinside.football.repository.PartiteRepository;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,8 +37,16 @@ public class ServicePartite {
 	    try (Response response = client.newCall(request).execute()){
 	    	JsonNode actualObj = mapper.readTree(response.body().string());
 	    	System.out.println(actualObj.get("response").get(0).get("title"));
+	    	System.out.println(actualObj.get("response").get(0).get("videos").get(0).toString());
 	    	for(int i = 0; i < actualObj.get("response").size(); i++) {
 	    		Partite partita = new ObjectMapper().readValue(actualObj.get("response").get(i).toString(), Partite.class);
+	    		partita.setDate(actualObj.get("response").get(0).get("date").toString());
+	    		for(int j = 0;j<actualObj.get("response").get(i).get("videos").size();j++) {
+	    			String title = actualObj.get("response").get(i).get("videos").get(j).get("title").toString();
+	    			String embed = actualObj.get("response").get(i).get("videos").get(j).get("embed").toString();
+	    			Videos video = new Videos(title,embed);
+	    			partita.getVideo().add(video);
+	    		}
 	    		partiteRepository.save(partita);
 	    		listaPartite.add(partita);
 	    	}

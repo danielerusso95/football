@@ -1,9 +1,13 @@
 package it.softwareinside.football.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Partite {
 	
 	@Id
@@ -13,7 +17,7 @@ public class Partite {
 	private String competitionUrl;
 	private String thumbnail;
 	private String date;
-	private List<Videos> video;
+	private List<Videos> video= new ArrayList<Videos>();
 	
 	
 	
@@ -31,6 +35,18 @@ public class Partite {
 		this.thumbnail = thumbnail;
 		this.date = date;
 		this.video = video;
+	}
+
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 
