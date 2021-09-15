@@ -26,7 +26,7 @@ public class PartiteController {
 	
 	@GetMapping("/all")
 	public List<Partite> metodoFill() throws IOException {
-		return service.takePartite();
+		return service.partite();
 	}
 	
 	
