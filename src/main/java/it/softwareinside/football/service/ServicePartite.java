@@ -33,7 +33,6 @@ public class ServicePartite {
 		ObjectMapper mapper = new ObjectMapper();
 		OkHttpClient client = new OkHttpClient();
 		Request request = new Request.Builder().url(urlAPI).build();
-
 		try (Response response = client.newCall(request).execute()) {
 			JsonNode actualObj = mapper.readTree(response.body().string());
 			for (int i = 0; i < actualObj.get("response").size(); i++) {
@@ -102,7 +101,7 @@ public class ServicePartite {
 	 * Method that returns the list of games through the date
 	 * 
 	 * @param data
-	 * @return
+	 * @return 
 	 */
 
 	public List<Partite> trovaData(String data) {
@@ -114,25 +113,4 @@ public class ServicePartite {
 		}
 		return partite;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
